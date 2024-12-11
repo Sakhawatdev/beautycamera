@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Beauty Camera</title>
+
+  <style>
+    /* Resetting some default styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f8ff;
+      /* Light blue background */
+      color: #333;
+      /* Text color */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    section {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 20px;
+    }
+
+    .camera_title {
+      margin-bottom: 20px;
+    }
+
+    .camera_title h1 {
+      font-size: 2.5rem;
+      font-weight: bold;
+      color: #0077cc;
+      /* Stylish blue */
+    }
+
+    video {
+      width: 100%;
+      max-width: 600px;
+      border: 2px solid #0077cc;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .camera_title h1 {
+        font-size: 2rem;
+      }
+
+      video {
+        max-width: 100%;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .camera_title h1 {
+        font-size: 1.5rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <section>
+    <div class="camera_title">
+      <h1>Beautify Your Camera</h1>
+    </div>
+
+    <video id="camera" autoplay playsinline></video>
+    <script>
+      async function startCamera() {
+        try {
+          const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+          document.getElementById('camera').srcObject = stream;
+        } catch (error) {
+          alert('Camera access denied or unavailable: ' + error.message);
+        }
+      }
+      startCamera();
+    </script>
+  </section>
+</body>
+
+</html>
